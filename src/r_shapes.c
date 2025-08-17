@@ -22,7 +22,7 @@ void generate_cube(OBJECT* cube_pointer,int size)
 		{4,5},
 		{5,6},
 		{6,7},
-		{7,5},
+		{7,4},
 	};
 	cube_pointer->vertice_map = malloc(12 * sizeof(int*));
 	for(int i = 0; i < 12; i++)

@@ -24,6 +24,7 @@ WRITTEN BY: ELLIS "ANDY" WEGLEWSKI/OSCILLATOR
 
 SDL_Window* window;
 SDL_Renderer* renderer;
+float theta = .0174533;
 
 int main()
 {
@@ -45,7 +46,6 @@ int main()
 	memcpy(cube_1.position,position,sizeof(float*));
 	memcpy(cube_1.color,RED,sizeof(float*));
 	generate_cube(&cube_1,250);
-	//normalize_object(&cube_1,&camera);
 	///
 	///
 	while(running)
@@ -65,9 +65,12 @@ int main()
 			}
 		}
 		SDL_SetRenderDrawColor(renderer,0,0,0,255);
-		//SDL_RenderClear(renderer);
+		SDL_RenderClear(renderer);
+		rotate_object(&cube_1,theta,'y');
+		normalize_object(&cube_1,&camera);
 		draw_object(renderer,&camera,&cube_1);
 		SDL_RenderPresent(renderer);
+		usleep(15000);
 	}
 	return 0;
 }

@@ -9,5 +9,6 @@ typedef struct OBJECT
 	float position[4];
 	int** vertice_map;
 	float** vertices;
+	float** normalized_vertices;
 }OBJECT;
 

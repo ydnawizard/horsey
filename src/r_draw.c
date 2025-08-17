@@ -11,13 +11,13 @@ void draw_object(SDL_Renderer* render_pointer,CAMERA* camera_pointer,OBJECT* obj
 			);
 	*/
 	SDL_SetRenderDrawColor(render_pointer,180,0,0,255);
-	for(int i = 0; i < 12; i++)
+	for(int i = 0; i < object_pointer->line_count;i++)
 	{
 		SDL_RenderLine(render_pointer,
-				object_pointer->vertices[object_pointer->vertice_map[i][0]][0],
-				object_pointer->vertices[object_pointer->vertice_map[i][0]][1],
-				object_pointer->vertices[object_pointer->vertice_map[i][1]][0],
-				object_pointer->vertices[object_pointer->vertice_map[i][1]][1]
+				object_pointer->normalized_vertices[object_pointer->vertice_map[i][0]][0],
+				object_pointer->normalized_vertices[object_pointer->vertice_map[i][0]][1],
+				object_pointer->normalized_vertices[object_pointer->vertice_map[i][1]][0],
+				object_pointer->normalized_vertices[object_pointer->vertice_map[i][1]][1]
 			      );
 	}
 }
