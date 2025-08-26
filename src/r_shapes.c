@@ -43,16 +43,18 @@ void generate_cube(OBJECT* cube_pointer,int size)
 		 {adj_size,adj_size,-adj_size,1},
 		 {adj_size,-adj_size,-adj_size,1},
 	};
-	cube_pointer->vertices = malloc(8 * sizeof(float*));
+	cube_pointer->pre_vertices = malloc(8 * sizeof(float*));
+	cube_pointer->post_vertices = malloc(8 * sizeof(float*));
 	for(int i = 0; i < 8; i++)
 	{
-		cube_pointer->vertices[i] = malloc(4 * sizeof(float));
-		memcpy(cube_pointer->vertices[i],vertices[i],4*sizeof(float));
+		cube_pointer->post_vertices[i] = malloc(4*sizeof(float));
+		cube_pointer->pre_vertices[i] = malloc(4 * sizeof(float));
+		memcpy(cube_pointer->pre_vertices[i],vertices[i],4*sizeof(float));
 	}
 	for(int i = 0; i < 8; i++)
 	{
-		printf("%f\n",cube_pointer->vertices[i][0]);
-		printf("%f\n",cube_pointer->vertices[i][1]);
+		printf("%f\n",cube_pointer->pre_vertices[i][0]);
+		printf("%f\n",cube_pointer->pre_vertices[i][1]);
 	}
 }
 

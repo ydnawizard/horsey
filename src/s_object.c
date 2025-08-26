@@ -8,7 +8,7 @@ typedef struct OBJECT
 	int line_count;
 	float position[4];
 	int** vertice_map;
-	float** vertices;
-	float** normalized_vertices;
+	float** pre_vertices;
+	float** post_vertices;
 }OBJECT;
 

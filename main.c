@@ -24,7 +24,7 @@ WRITTEN BY: ELLIS "ANDY" WEGLEWSKI/OSCILLATOR
 
 SDL_Window* window;
 SDL_Renderer* renderer;
-float theta = .0174533;
+float theta = 3.14159265358/180.0;
 
 int main()
 {
@@ -35,7 +35,7 @@ int main()
 	SDL_CreateWindowAndRenderer("window",window_width,window_height,SDL_WINDOW_RESIZABLE,&window,&renderer);
 	///
 	///
-	float camera_position[4] = {window_width/2.0f,window_height/2.0f,0.0f,0.0f};
+	float camera_position[4] = {window_width/2.0f,window_height/2.0f,1.0f,1.0f};
 	CAMERA camera;
 	memcpy(camera.position,camera_position,sizeof(float*));
 	///
@@ -48,8 +48,13 @@ int main()
 	generate_cube(&cube_1,250);
 	///
 	///
+	int degrees = 1;
 	while(running)
 	{
+		if(degrees > 360)
+		{
+			degrees = 1;
+		}
 		while(SDL_PollEvent(&event))
 		{
 			if(event.type == SDL_EVENT_QUIT)
@@ -66,8 +71,9 @@ int main()
 		}
 		SDL_SetRenderDrawColor(renderer,0,0,0,255);
 		SDL_RenderClear(renderer);
-		rotate_object(&cube_1,theta,'y');
-		normalize_object(&cube_1,&camera);
+		rotate_object(&cube_1,degrees * theta,'y');
+		translate_vertices_to_camera_perspective(&cube_1,&camera);
+		degrees +=1;
 		draw_object(renderer,&camera,&cube_1);
 		SDL_RenderPresent(renderer);
 		usleep(15000);

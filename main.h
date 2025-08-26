@@ -16,7 +16,7 @@
 
 //Render
 #include "src/r_shapes.c"
-#include "src/r_normalize.c"
+#include "src/r_translate.c"
 #include "src/r_draw.c"
 
 //Resources
