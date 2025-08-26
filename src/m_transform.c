@@ -29,7 +29,7 @@ void matrix_multiply_source_to_destination(float ** source_vector,float ** desti
 	}
 }
 
-void rotate_object_x(OBJECT* object_pointer,int degrees)
+void rotate_object_x_pre(OBJECT* object_pointer,int degrees)
 {
 	object_pointer->x_rotational_orientation += degrees;
 	object_pointer->x_rotational_orientation = object_pointer->x_rotational_orientation % 360;
@@ -43,11 +43,44 @@ void rotate_object_x(OBJECT* object_pointer,int degrees)
 	for(int i = 0; i < object_pointer->vertice_count; i++)
 	{
 		matrix_multiply_source_to_destination(&object_pointer->pre_vertices[i],&object_pointer->post_vertices[i],matrix);
-		//matrix_multiply_source_to_source(&object_pointer->post_vertices[i],matrix);
 	}
 }
 
-void rotate_object_y(OBJECT* object_pointer,int degrees)
+void rotate_object_x_post(OBJECT* object_pointer,int degrees)
+{
+	object_pointer->x_rotational_orientation += degrees;
+	object_pointer->x_rotational_orientation = object_pointer->x_rotational_orientation % 360;
+	float theta = 0.0174533 * object_pointer->x_rotational_orientation;
+	float matrix[4][4] = {
+		{1,0,0,0},
+		{0,cosf(theta),-sinf(theta),0},
+		{0,sinf(theta),cosf(theta),0},
+		{0,0,0,1}
+	};
+	for(int i = 0; i < object_pointer->vertice_count; i++)
+	{
+		matrix_multiply_source_to_source(&object_pointer->post_vertices[i],matrix);
+	}
+}
+
+void rotate_object_y_pre(OBJECT* object_pointer,int degrees)
+{
+	object_pointer->y_rotational_orientation += degrees;
+	object_pointer->y_rotational_orientation = object_pointer->y_rotational_orientation % 360;
+	float theta = 0.0174533 * object_pointer->y_rotational_orientation;
+	float matrix[4][4] = {
+		{cosf(theta),0,sinf(theta),0},
+		{0,1,0,0},
+		{-sinf(theta),0,cosf(theta),0},
+		{0,0,0,1}
+	};
+	for(int i = 0; i < object_pointer->vertice_count; i++)
+	{
+		matrix_multiply_source_to_destination(&object_pointer->pre_vertices[i],&object_pointer->post_vertices[i],matrix);
+	}
+}
+
+void rotate_object_y_post(OBJECT* object_pointer,int degrees)
 {
 	object_pointer->y_rotational_orientation += degrees;
 	object_pointer->y_rotational_orientation = object_pointer->y_rotational_orientation % 360;

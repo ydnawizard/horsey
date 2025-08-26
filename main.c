@@ -75,8 +75,8 @@ int main()
 		}
 		SDL_SetRenderDrawColor(renderer,0,0,0,255);
 		SDL_RenderClear(renderer);
-		rotate_object_x(&cube_1,1);
-		rotate_object_y(&cube_1,1);
+		rotate_object_y_pre(&cube_1,1);
+		rotate_object_x_post(&cube_1,3);
 		translate_vertices_to_camera_perspective(&cube_1,&camera);
 		degrees +=2;
 		draw_object(renderer,&camera,&cube_1);
