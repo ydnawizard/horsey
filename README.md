@@ -18,6 +18,7 @@ https://github.com/user-attachments/assets/e15f2e4a-5d54-4b02-acbf-7959878d9aba
 - Finish rotation handling. If this is done, it can be done for any transformation.
 - Map handling -> Multiple Shapes handled easily
 - OBJ read to OBJECT struct
+- Establish clock and stuff
 - Multithreading
 - GPU acceleration
 - Define a couple more shape presets
