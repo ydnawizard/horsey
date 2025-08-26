@@ -8,15 +8,17 @@
 
 //Globals
 #include "src/global_define.c"
+
+//Structs
 #include "src/s_camera.c"
 #include "src/s_object.c"
+#include "src/s_map.c"
 
 //Math
 #include "src/m_transform.c"
 
 //Render
 #include "src/r_shapes.c"
-#include "src/r_translate.c"
 #include "src/r_draw.c"
 
 //Resources

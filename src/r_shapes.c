@@ -5,8 +5,6 @@
 //returns a cube of input size at input position
 void generate_cube(OBJECT* cube_pointer,int size)
 {
-	//Halve size because cube is drawn in respect to its own origin
-	float adj_size = size/2;
 	//Generate vertice map so renderer knows what lines to draw
 	cube_pointer->line_count = 12;
 	int vertice_map[12][2] = 
@@ -30,18 +28,20 @@ void generate_cube(OBJECT* cube_pointer,int size)
 		cube_pointer->vertice_map[i] = malloc(2 * sizeof(int));
 		memcpy(cube_pointer->vertice_map[i],vertice_map[i],2*sizeof(int));
 	}
+	//Halve size because cube is drawn in respect to its own origin
+	float adjusted_size = size/2;
 	//Generate vertices in respect to size
 	cube_pointer->vertice_count = 8;
 	float vertices[8][4] =
 	{
-		 {-adj_size,adj_size,adj_size,1},
-		 {-adj_size,adj_size,-adj_size,1},
-		 {-adj_size,-adj_size,-adj_size,1},
-		 {-adj_size,-adj_size,adj_size,1},
-		 {adj_size,-adj_size,adj_size,1},
-		 {adj_size,adj_size,adj_size,1},
-		 {adj_size,adj_size,-adj_size,1},
-		 {adj_size,-adj_size,-adj_size,1},
+		 {-adjusted_size,adjusted_size,adjusted_size,1},
+		 {-adjusted_size,adjusted_size,-adjusted_size,1},
+		 {-adjusted_size,-adjusted_size,-adjusted_size,1},
+		 {-adjusted_size,-adjusted_size,adjusted_size,1},
+		 {adjusted_size,-adjusted_size,adjusted_size,1},
+		 {adjusted_size,adjusted_size,adjusted_size,1},
+		 {adjusted_size,adjusted_size,-adjusted_size,1},
+		 {adjusted_size,-adjusted_size,-adjusted_size,1},
 	};
 	cube_pointer->pre_vertices = malloc(8 * sizeof(float*));
 	cube_pointer->post_vertices = malloc(8 * sizeof(float*));
@@ -50,12 +50,16 @@ void generate_cube(OBJECT* cube_pointer,int size)
 		cube_pointer->post_vertices[i] = malloc(4*sizeof(float));
 		cube_pointer->pre_vertices[i] = malloc(4 * sizeof(float));
 		memcpy(cube_pointer->pre_vertices[i],vertices[i],4*sizeof(float));
+		memcpy(cube_pointer->post_vertices[i],vertices[i],4*sizeof(float));
 	}
 	for(int i = 0; i < 8; i++)
 	{
 		printf("%f\n",cube_pointer->pre_vertices[i][0]);
 		printf("%f\n",cube_pointer->pre_vertices[i][1]);
 	}
+	cube_pointer->x_rotational_orientation = 0;
+	cube_pointer->y_rotational_orientation = 0;
+	cube_pointer->z_rotational_orientation = 0;
 }
 
 
