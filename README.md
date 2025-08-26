@@ -20,3 +20,6 @@ https://github.com/user-attachments/assets/e15f2e4a-5d54-4b02-acbf-7959878d9aba
 - OBJ read to OBJECT struct
 - Multithreading
 - GPU acceleration
+- Define a couple more shape presets
+- Why doesnt blue work?
+- fbx handling
